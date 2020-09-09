@@ -38,11 +38,11 @@ public class Entidad {
 	public double getY() {
 		return y;
 	}
-	
+
 	public void setX(double x) {
 		this.x = x;
 	}
-	
+
 	public void setY(double y) {
 		this.y = y;
 	}
@@ -59,7 +59,7 @@ public class Entidad {
 			System.out.println("Error al enviar/recibir un mensaje. Ejecución finalizada");
 			System.exit(-1);
 		}
-		
+
 		return unpacker;
 	}
 

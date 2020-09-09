@@ -67,7 +67,6 @@ public class UserEquipment extends Thread {
 				semilla = Long.parseLong(args[++i]);
 				rand.setSeed(semilla + id);
 			}
-				
 
 		}
 
@@ -175,45 +174,37 @@ public class UserEquipment extends Thread {
 
 		for (int i = 0; i < args.length; i++)
 			if (args[i].equals("-h") || args[i].equals("--help")) {
-				System.out.println("Argumentos obligatorios:\n"
-						+ "\t<ID> <X> <Y>\n"
-						+ "Argumentos opcionales:\n"
+				System.out.println("Argumentos obligatorios:\n" + "\t<ID> <X> <Y>\n" + "Argumentos opcionales:\n"
 						+ "\t[--host <IP> <PUERTO>] [-s|--size <DISTR> <PARAM1> <PARAM2>] [-d|--delay <DISTR> <PARAM1> <PARAM2>]\n"
 						+ "\t[-m|--mobility <DISTR> <PARAM1> <PARAM2>] [--seed <SEMILLA>] [-h|--help]\n"
 						+ "Información sobre los argumentos:\n"
 						+ "\t<ID>\t\tDefine el ID con el cual se identifica la entidad UE.\n"
 						+ "\t<X>\t\tDefine la coordenada X inicial donde se sitúa la entidad UE.\n"
-						+ "\t<Y>\t\tDefine la coordenada Y inicial donde se sitúa la entidad UE.\n" 
+						+ "\t<Y>\t\tDefine la coordenada Y inicial donde se sitúa la entidad UE.\n"
 						+ "\t--host <IP> <PUERTO>\n"
 						+ "\t\t\tDefine la IP o el nombre del host donde está ubicado el broker y su puerto.\n"
 						+ "\t\t\tValor por defecto: localhost 3000.\n"
-						
+
 						+ "\t-s|--size <DISTR> <PARAM1> <PARAM2>\n"
-						+ "\t\t\tDefine cómo se obtiene el valor tiempo demandado.\n" 
-						+ "\t\t\tValores permitidos para DISTR:\n"
-						+ "\t\t\t\td[eterminista]\tsize=PARAM1\n" 
+						+ "\t\t\tDefine cómo se obtiene el valor tiempo demandado.\n"
+						+ "\t\t\tValores permitidos para DISTR:\n" + "\t\t\t\td[eterminista]\tsize=PARAM1\n"
 						+ "\t\t\t\tu[niforme]\tE[size]=(PARAM1+PARAM2)/2\n"
-						+ "\t\t\t\te[xponencial]\tE[size]=1/PARAM1\n" 
-						+ "\t\t\tValor por defecto: e 1 0.\n"
-						
+						+ "\t\t\t\te[xponencial]\tE[size]=1/PARAM1\n" + "\t\t\tValor por defecto: e 1 0.\n"
+
 						+ "\t-d|--delay <DISTR> <PARAM1> <PARAM2>\n"
 						+ "\t\t\tDefine cómo se obtiene el valor tiempo entre llegadas.\n"
-						+ "\t\t\tValores permitidos para DISTR:\n"
-						+ "\t\t\t\td[eterminista]\tdelay=PARAM1\n" 
+						+ "\t\t\tValores permitidos para DISTR:\n" + "\t\t\t\td[eterminista]\tdelay=PARAM1\n"
 						+ "\t\t\t\tu[niforme]\tE[delay]=(PARAM1+PARAM2)/2\n"
-						+ "\t\t\t\te[xponencial]\tE[delay]=1/PARAM1\n" 
-						+ "\t\t\tValor por defecto: e 1 0.\n"
-						
+						+ "\t\t\t\te[xponencial]\tE[delay]=1/PARAM1\n" + "\t\t\tValor por defecto: e 1 0.\n"
+
 						+ "\t-m|--mobility <DISTR> <PARAM1> <PARAM2>\n"
 						+ "\t\t\tDefine cómo se obtiene el valor del desplazamiento entre generaciones.\n"
-						+ "\t\t\tValores permitidos para DISTR:\n"
-						+ "\t\t\t\td[eterminista]\tmobility=PARAM1\n"
+						+ "\t\t\tValores permitidos para DISTR:\n" + "\t\t\t\td[eterminista]\tmobility=PARAM1\n"
 						+ "\t\t\t\tu[niforme]\tE[mobility]=(PARAM1+PARAM2)/2\n"
-						+ "\t\t\t\te[xponencial]\tE[mobility]=1/PARAM1\n" 
-						+ "\t\t\tValor por defecto: d 0 0.\n"
-						
+						+ "\t\t\t\te[xponencial]\tE[mobility]=1/PARAM1\n" + "\t\t\tValor por defecto: d 0 0.\n"
+
 						+ "\t--seed <SEMILLA>La generación de números aleatorios estará basada en una semilla con valor=SEMILLA+ID.\n"
-						+ "\t\t\tValor por defecto: La generación de números aleatorios no se basa en ninguna semilla.\n" 
+						+ "\t\t\tValor por defecto: La generación de números aleatorios no se basa en ninguna semilla.\n"
 						+ "\t-h|--help\tImprime por consola la lista de posibles argumentos con su explicación.\n");
 				System.exit(0);
 			}

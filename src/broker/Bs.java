@@ -38,14 +38,14 @@ public class Bs extends Entidad {
 	public double getEw() {
 		if (contadorW == 0)
 			return 0;
-		
+
 		return eW / contadorW;
 	}
 
 	public double getEq() {
 		if (tAux == 0)
 			return 0;
-		
+
 		return eQ / tAux;
 	}
 

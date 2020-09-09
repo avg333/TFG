@@ -11,7 +11,7 @@ public class Ue extends Entidad {
 	public Ue(int id, double x, double y, DatagramSocket sc, InetAddress ad, int puerto) {
 		super(id, x, y, sc, ad, puerto);
 	}
-	
+
 	public void addTarea(double x, double y, double l, double a) {
 		setX(x);
 		setY(y);
@@ -23,15 +23,15 @@ public class Ue extends Entidad {
 	public double geteL() {
 		if (contadorTareas == 0)
 			return 0;
-		
+
 		return eL / contadorTareas;
 	}
 
 	public double geteA() {
 		if (contadorTareas == 0)
 			return 0;
-		
+
 		return eA / contadorTareas;
 	}
-	
+
 }

@@ -12,7 +12,7 @@ public class Depuracion {
 	private static final DecimalFormat DF_CSV = new DecimalFormat();
 	private static final String SEPARADOR = ";";
 
-	private static final double AVANCE = 0.05;
+	private static final double AVANCE = 0.1;
 	private static double aux = AVANCE;
 
 	public static ArrayList<MyVector> lista = new ArrayList<>();
@@ -25,57 +25,60 @@ public class Depuracion {
 			BufferedWriter writer = new BufferedWriter(new FileWriter("log_TIME" + ".csv"));
 			writer.write("X" + SEPARADOR + "Y\n");
 			for (int i = 0; i < lista.size(); i++)
-				writer.write(DF_CSV.format(lista.get(i).getaDouble()) + SEPARADOR + lista.get(i).getbDouble() + "\n");
+				writer.write(lista.get(i).getT() + SEPARADOR + lista.get(i).getTime() + "\n");
 			writer.close();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 	}
 
-	public static void addVector(Double aDouble, long bDouble) {
-		MyVector vector = new MyVector(aDouble, bDouble);
-		lista.add(vector);
+	public static void addVector(long t, long time) {
+		if (t / 1000 >= aux) {
+			MyVector vector = new MyVector(t, time);
+			lista.add(vector);
+			aux += AVANCE;
+		}
 	}
 
 	static class MyVector {
-		Double aDouble;
-		long bDouble;
+		long t;
+		long time;
 
-		public MyVector(Double aDouble, long bDouble) {
-			this.aDouble = aDouble;
-			this.bDouble = bDouble;
+		public MyVector(long t, long time) {
+			this.t = t;
+			this.time = time;
 		}
 
-		public double getaDouble() {
-			return aDouble;
+		public long getT() {
+			return t;
 		}
 
-		public long getbDouble() {
-			return bDouble;
+		public long getTime() {
+			return time;
 		}
 	}
 
-	public static void addProgressUE(double t, double total, Ue ue) {
+	public static void addProgressUE(long t, double total, Ue ue) {
 		if (!(t / total * 100 > aux)) {
 			return;
 		}
 		aux += AVANCE;
-		String entrada = DF_CSV.format(Math.floor(t)) + SEPARADOR + DF_CSV.format(ue.geteL()) + SEPARADOR
+		String entrada = DF_CSV.format(t) + SEPARADOR + DF_CSV.format(ue.geteL()) + SEPARADOR
 				+ DF_CSV.format(ue.geteA()) + ";1;1,25" + SEPARADOR
 				+ DF_CSV.format(Math.abs((ue.geteL() - 1) / 1.0 * 100)) + SEPARADOR
 				+ DF_CSV.format(Math.abs((ue.geteA() - 1.25) / 1.25 * 100));
 		progresUE.add(entrada);
 	}
 
-	public static void addProgressBS(double t, double total, Bs bs) {
+	public static void addProgressBS(long t, double total, Bs bs) {
 		if (!(t / total * 100 > aux)) {
 			return;
 		}
 		aux += AVANCE;
 		String entrada = DF_CSV.format(t) + SEPARADOR + DF_CSV.format(bs.getEq()) + SEPARADOR
 				+ DF_CSV.format(bs.getEw()) + ";3,2;4" + SEPARADOR
-						+ DF_CSV.format(Math.abs((bs.getEq() - 3.2) / 3.2 * 100)) + SEPARADOR
-						+ DF_CSV.format(Math.abs((bs.getEw() - 4.0) / 4.0 * 100));
+				+ DF_CSV.format(Math.abs((bs.getEq() - 3.2) / 3.2 * 100)) + SEPARADOR
+				+ DF_CSV.format(Math.abs((bs.getEw() - 4.0) / 4.0 * 100));
 		progresBS.add(entrada);
 	}
 

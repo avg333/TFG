@@ -223,31 +223,23 @@ public class BaseStation extends Thread {
 
 		for (int i = 0; i < args.length; i++)
 			if (args[i].equals("-h") || args[i].equals("--help")) {
-				System.out.println("Argumentos obligatorios:\n"
-						+ "\t<ID> <X> <Y>\n"
-						+ "Argumentos opcionales:\n"
+				System.out.println("Argumentos obligatorios:\n" + "\t<ID> <X> <Y>\n" + "Argumentos opcionales:\n"
 						+ "\t[--host <IP> <PUERTO>] [-c|--capacity <CAPACIDAD>] [-t|--times <TTOOFF> <TTOON> <THISTERISIS>]\n"
-						+ "\t[-a|--algorithm <ALGORITMO> <PARAM>] [-h|--help]\n"
-						+ "Información sobre los argumentos:\n"
+						+ "\t[-a|--algorithm <ALGORITMO> <PARAM>] [-h|--help]\n" + "Información sobre los argumentos:\n"
 						+ "\t<ID>\t\tDefine el ID con el cual se identifica la entidad BS.\n"
 						+ "\t<X>\t\tDefine la coordenada X inicial donde se sitúa la entidad BS.\n"
 						+ "\t<Y>\t\tDefine la coordenada Y inicial donde se sitúa la entidad BS.\n"
 						+ "\t--host <IP> <PUERTO>\n"
 						+ "\t\t\tDefine la IP o el nombre del host donde está ubicado el broker y su puerto.\n"
-						+ "\t\t\tValor por defecto: localhost 3000.\n"
-						+ "\t-c|--capacity <CAPACIDAD>\n"
-						+ "\t\t\tDefine la velocidad de procesamiento de tareas.\n"
-						+ "\t\t\tValor por defecto: 1.\n"
+						+ "\t\t\tValor por defecto: localhost 3000.\n" + "\t-c|--capacity <CAPACIDAD>\n"
+						+ "\t\t\tDefine la velocidad de procesamiento de tareas.\n" + "\t\t\tValor por defecto: 1.\n"
 						+ "\t-t|--times <TTOOFF> <TTOON> <THISTERISIS>\n"
 						+ "\t\t\tDefine el tiempo de desactivación, activación e histéresis respectivamente.\n"
-						+ "\t\t\tValor por defecto: 0 0 0.\n"
-						+ "\t-a|--algorithm <ALGORITMO>  <PARAM>\n"
+						+ "\t\t\tValor por defecto: 0 0 0.\n" + "\t-a|--algorithm <ALGORITMO>  <PARAM>\n"
 						+ "\t\t\tDefine el comportamiento del algoritmo de decisión de estado. Valores permitidos para ALGORITMO:\n"
-						+ "\t\t\t\tn[o coalescing]\n"
-						+ "\t\t\t\ts[ize based coalescing] (umbralON=PARAM)\n"
+						+ "\t\t\t\tn[o coalescing]\n" + "\t\t\t\ts[ize based coalescing] (umbralON=PARAM)\n"
 						+ "\t\t\t\tt[ime based coalescing] (temporizador=PARAM)\n"
-						+ "\t\t\t\tf[ixed coalescing]\t(periodo=PARAM)\n"
-						+ "\t\t\tValor por defecto: n 1.\n"
+						+ "\t\t\t\tf[ixed coalescing]\t(periodo=PARAM)\n" + "\t\t\tValor por defecto: n 1.\n"
 						+ "\t-h|--help\tImprime por consola la lista de posibles argumentos con su explicación.\n");
 				System.exit(0);
 			}

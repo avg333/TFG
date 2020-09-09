@@ -179,11 +179,8 @@ public class Logger {
 			state = "to_off";
 			break;
 		case Bs.HISTERISIS:
-			state = "on(histerisis)";
-			break;
 		case Bs.WAITING_TO_ON:
-			state = "off(waiting_to_on)";
-			break;
+			return;
 		}
 
 		if (verbosity)

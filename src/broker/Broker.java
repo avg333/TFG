@@ -64,14 +64,10 @@ public class Broker extends Thread {
 			Evento evento = obtenerProximoEvento();
 			procesarEvento(evento);
 			Logger.printProgress(t, T_FINAL);
-			//Depuracion.addProgressUE(t, T_FINAL, listaUE.get(0));
-			Depuracion.addProgressBS(t, T_FINAL, listaBS.get(0));
 		}
 		long finish = System.currentTimeMillis();
 
 		HiloServidorRegistro.cerrarSockets();
-		//Depuracion.imprimirProgresionUE();
-		Depuracion.imprimirProgresionBS();
 		Logger.imprimirResultados(finish - start);
 	}
 
@@ -142,14 +138,11 @@ public class Broker extends Thread {
 		Bs bs = obtenerBS(xUe, yUe);
 		Logger.logTRAFFIC_ROUTE(t, ue.getId(), bs.getId(), idTarea, size);
 
-		/*
-		 * -----------------------------------------------------------------------------
-		 */
 		MessageBufferPacker requestTA = MessagePack.newDefaultBufferPacker();
 		requestTA.packInt(Evento.TRAFFIC_ARRIVE).packDouble(t).packLong(idTarea).packDouble(size);
 		requestTA.close();
 		MessageUnpacker responseTA = bs.comunicar(requestTA);
-		
+
 		double q = responseTA.unpackDouble();
 		int state = responseTA.unpackInt();
 		double tTrafficEgress = responseTA.unpackDouble();
@@ -167,7 +160,7 @@ public class Broker extends Thread {
 			Logger.logNEW_STATE(t, bs.getId(), q, state);
 
 		crearEventos(bs, tNewState, tTrafficEgress, nextState);
-		
+
 		bs.addQ(q, t);
 		bs.setEstado(state);
 	}
@@ -216,14 +209,14 @@ public class Broker extends Thread {
 		nextState = responseNS.unpackInt();
 		responseNS.close();
 
-		//if (state != bs.getEstado())
+		if (state != bs.getEstado())
 			Logger.logNEW_STATE(t, bs.getId(), q, state);
 
 		crearEventos(bs, tNewState, tTrafficEgress, nextState);
-		
+
 		bs.setEstado(state);
 	}
-	
+
 	private static void crearEventos(Bs bs, double tNewState, double tTrafficEgress, int nextState) {
 		if (tNewState > 0) {
 			Evento newState = new Evento(Evento.NEW_STATE, t + tNewState, bs);
@@ -271,24 +264,19 @@ public class Broker extends Thread {
 		return hipotenusa;
 	}
 
-	
 	private static void imprimirComandos(String args[]) {
 
 		for (int i = 0; i < args.length; i++)
 			if (args[i].equals("-h") || args[i].equals("--help")) {
-				System.out.println("Argumentos obligatorios:\n"
-						+ "\t<T_FINAL>\n"
-						+ "Argumentos opcionales:\n"
+				System.out.println("Argumentos obligatorios:\n" + "\t<T_FINAL>\n" + "Argumentos opcionales:\n"
 						+ "\t[-p|--port <PUERTO>] [-a|--algorithm <ALGORITMO>] [-v|--verbosity] [-c|--csv] [-h|--help]\n"
 						+ "Información sobre los argumentos:\n"
 						+ "\t<T_FINAL>\tValor máximo de tiempo que puede alcanzar la simulación.\n"
 						+ "\t-p|--port <PUERTO>\n"
 						+ "\t\t\tCambia el puerto en el que se esperan comunicaciones de las entidades.\n"
-						+ "\t\t\tValor por defecto: 3000.\n"
-						+ "\t-a|--algorithm <ALGORITMO>\n"
+						+ "\t\t\tValor por defecto: 3000.\n" + "\t-a|--algorithm <ALGORITMO>\n"
 						+ "\t\t\tDefine el algoritmo a usar para el encaminamiento de tareas. Valores permitidos:\n"
-						+ "\t\t\t\tv[ector de distancias]\n"
-						+ "\t\t\tValor por defecto: v.\n"
+						+ "\t\t\t\tv[ector de distancias]\n" + "\t\t\tValor por defecto: v.\n"
 						+ "\t-c|--csv\tGenera un archivo csv al final de la simulación con todos los eventos y su información.\n"
 						+ "\t-v|--verbosity\tImprime por consola los eventos con su información a medida que suceden en la simulación.\n"
 						+ "\t-h|--help\tImprime por consola la lista de posibles argumentos con su explicación.\n");
